@@ -20,24 +20,24 @@ export default function LogIn({ setEstaLogueado }) {
 
 
   return (
-    <div id='loginContainer'>
+    <div className = 'form' id='loginContainer'>
 
         <h1> Iniciar Sesión </h1>
 
-        <form action="loginForm" method="post" onSubmit={enviarDatos}>
+        <form action="loginForm" method="post" onSubmit={enviarDatos} className='formularioLogin'>
 
-            <label form='email'>Email:</label>
-            <input type='email' name='email' id='email' value={email} onChange={e => setEmail(e.target.value)} required></input>
+            <label form='email'>
+              <span>Email: </span><br />
+              <input type='email' name='email' id='email' value={email} onChange={e => setEmail(e.target.value)} required></input>
+            </label>
 
-            <br />
-
-            <label form='password'>Contraseña: </label>
-            <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required/> 
-
-            <br />
-
-            <button type="submit" className='botonIniciarSesion'>Iniciar Sesion</button>
-
+            <label form='password'> 
+              <span>Contraseña:</span>
+              <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required/> 
+            </label>
+            <div className='boton'>
+              <button type="submit" className='botonIniciarSesion'>Iniciar Sesion</button>
+            </div>
         </form>
     </div>
   )
