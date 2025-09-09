@@ -1,4 +1,5 @@
 package com.grupo7.TrabajoDeCampo.handler;
+
 import com.grupo7.TrabajoDeCampo.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,9 +16,6 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    @Autowired
-    private CustomAuthenticationFailureHandler failureHandler;
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,17 +29,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .cors(cors -> {}) // Habilitar CORS
+                .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF (solo si es API REST)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/users/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/auth/login")// página login
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .failureHandler(failureHandler) //handler
-                        .defaultSuccessUrl("/home", true) //redirige si login OK
+                        .requestMatchers("/auth/**", "/users/**").permitAll() // público
+                        .anyRequest().authenticated() // lo demás requiere login
                 );
 
         return http.build();
