@@ -1,6 +1,5 @@
 package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name="users")
@@ -38,8 +37,7 @@ public class User{
         return password;
     }
     public void setPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.password = encoder.encode(password);
+        this.password = password;
     }
 
 }

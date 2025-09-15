@@ -1,44 +1,73 @@
-import './LogIn.css'
-import {useState} from 'react'
+import './LogIn.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+export default function LogIn({ setUsuario }) {
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const navigate = useNavigate();
 
-export default function LogIn({ setEstaLogueado }) {
+  const enviarDatos = async (evento) => {
+    evento.preventDefault();
 
+    try {
+      const response = await fetch("http://localhost:8081/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-    const [email, setEmail] = useState(""); 
-    const [password, setPassword] = useState("");
-    //const [error, setError] = useState(false);
+      const data = await response.text();
+      console.log("Respuesta del servidor:", data);
 
-    const enviarDatos = (evento) => {
-        evento.preventDefault();
-        console.log("Email: " + email);
-        console.log("Contraseña: " + password);
+      if (response.ok && data.startsWith("Login exitoso")) {
+        setUsuario({ email, loggedIn: true }); 
+        navigate("/home"); // 👈 Redirige al Home
+      } else {
+        setMensaje(data);
+      }
 
-        setEstaLogueado([email, password]);
-
+    } catch (error) {
+      console.error("Error en la conexión:", error);
+      setMensaje("Error de conexión con el servidor.");
     }
-
+  };
 
   return (
-    <div className = 'form' id='loginContainer'>
+    <div className='form' id='loginContainer'>
+      <h1 className='txt'> Iniciar Sesión </h1>
+      <form onSubmit={enviarDatos} className='formularioLogin'>
+        <label htmlFor='email' className='formLabel'>
+          <span>Email: </span>
+          <input
+            type='email'
+            id='email'
+            placeholder='example@mail.com'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+        </label>
 
-        <h1 className='txt'> Iniciar Sesión </h1>
+        <label htmlFor='password' className='formLabel'> 
+          <span>Contraseña:</span>
+          <input
+            type='password'
+            id='password'
+            placeholder='Contraseña'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+          /> 
+        </label>
 
-        <form action="loginForm" method="post" onSubmit={enviarDatos} className='formularioLogin'>
+        <div className='boton'>
+          <button type="submit" className='botonIniciarSesion'>Iniciar Sesion</button>
+        </div>
+      </form>
 
-            <label form='email' className='formLabel'>
-              <span>Email: </span>
-              <input type='email' name='email' id='email' placeholder='example@mail.com' value={email} onChange={e => setEmail(e.target.value)} required></input>
-            </label>
-
-            <label form='password' className='formLabel'> 
-              <span>Contraseña:</span>
-              <input type='password' name='password' id='password' placeholder='Contraseña' value={password} onChange={e => setPassword(e.target.value)} required/> 
-            </label>
-            <div className='boton'>
-              <button type="submit" className='botonIniciarSesion'>Iniciar Sesion</button>
-            </div>
-        </form>
+      {mensaje && <p>{mensaje}</p>}
     </div>
-  )
+  );
 }

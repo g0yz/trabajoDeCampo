@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Home() {
+export default function Home({ usuario }) {
   return (
     <div>
-        <h1>Felicitaciones Entraste</h1>
+      <h1>Bienvenido, {usuario.email} 👋</h1>
     </div>
   )
 }

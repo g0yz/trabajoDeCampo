@@ -1,32 +1,39 @@
-import logo from './assets/logo.svg';
-
-import LogIn from './components/LogIn/LogIn';
-import Home from './components/Home/Home';
-import {useState} from 'react';
-
-import './App.css';
-
-function App() {
-
-  const [estaLogueado, setEstaLogueado] = useState([]);
-
-
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        {
-          !estaLogueado.length > 0 
-            ?  <LogIn setEstaLogueado={setEstaLogueado}  />  
-            : <Home />
-        }
-        
-       
-        
-
-      </header>
-    </div>
-  );
-}
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+import LogIn from "./components/LogIn/LogIn";
+import Home from "./components/Home/Home";
+import "./App.css";
 
 export default App;
+
+function App() {
+  const [usuario, setUsuario] = useState(null);
+
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Routes>
+            {/* Ruta inicial: si no está logueado, va a login, si sí, redirige al home */}
+            <Route
+              path="/"
+              element={
+                !usuario ? <LogIn setUsuario={setUsuario} /> : <Navigate to="/home" />
+              }
+            />
+            {/* Ruta protegida para Home */}
+            <Route
+              path="/home"
+              element={
+                usuario ? <Home usuario={usuario} /> : <Navigate to="/" />
+              }
+              
+            />
+
+
+          </Routes>
+        </header>
+      </div>
+    </BrowserRouter>
+  );
+}

@@ -36,13 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**", "/users/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form
-                        .loginPage("/auth/login")// página login
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .failureHandler(failureHandler) //handler
-                        .defaultSuccessUrl("/home", true) //redirige si login OK
-                );
+                .formLogin(form -> form.disable());
 
         return http.build();
     }

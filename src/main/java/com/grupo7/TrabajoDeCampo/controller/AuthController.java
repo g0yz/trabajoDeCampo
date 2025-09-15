@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     @Autowired
@@ -21,7 +22,7 @@ public class AuthController {
 
     // Registro de usuario
     @PostMapping("/register")
-    public String register(@RequestBody UserRegisterRequest request) {  //uso de UserLoginRequest
+    public String register(@RequestBody UserRegisterRequest request) {  //uso de UserRegisterRequest
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             return "El correo ya está registrado.";
         }
