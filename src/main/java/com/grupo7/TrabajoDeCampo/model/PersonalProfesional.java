@@ -14,7 +14,7 @@ public class PersonalProfesional extends Persona {
     public PersonalProfesional() {
     }
 
-    public PersonalProfesional(String nombre, String apellido) {
-        super(nombre, apellido);
+    public PersonalProfesional(String nombre, String apellido, String horasSemanales) {
+        super(nombre, apellido, horasSemanales);
     }
 }

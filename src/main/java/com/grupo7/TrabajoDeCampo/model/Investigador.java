@@ -29,8 +29,8 @@ public class Investigador extends Persona{
     public Investigador() {
     }
 
-    public Investigador(String nombre, String apellido) {
-        super(nombre, apellido);
+    public Investigador(String nombre, String apellido, String horasSemanales) {
+        super(nombre, apellido, horasSemanales);
     }
 
     //GETTERS

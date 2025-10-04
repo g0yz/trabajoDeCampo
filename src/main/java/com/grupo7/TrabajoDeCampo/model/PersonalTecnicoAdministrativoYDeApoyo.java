@@ -10,7 +10,7 @@ public class PersonalTecnicoAdministrativoYDeApoyo extends Persona {
     public PersonalTecnicoAdministrativoYDeApoyo() {
     }
 
-    public PersonalTecnicoAdministrativoYDeApoyo(String nombre, String apellido) {
-        super(nombre, apellido);
+    public PersonalTecnicoAdministrativoYDeApoyo(String nombre, String apellido, String horasSemanales) {
+        super(nombre, apellido, horasSemanales);
     }
 }

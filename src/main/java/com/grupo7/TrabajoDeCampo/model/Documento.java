@@ -32,11 +32,12 @@ public class Documento {
     public Documento() {
     }
 
-    public Documento(String titulo, String autores, String editorial, String anio){
+    public Documento(String titulo, String autores, String editorial, String anio, Grupo grupo){
         this.titulo = titulo;
         this.autores = autores;
         this.editorial = editorial;
         this.anio = anio;
+        this.grupo = grupo;
     }
 
     //GETTERS
@@ -60,6 +61,10 @@ public class Documento {
         return anio;
     }
 
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
     //SETTERS
     public void setAnio(String anio) {
         this.anio = anio;
@@ -80,4 +85,9 @@ public class Documento {
     public void setIdDocumento(long idDocumento) {
         this.idDocumento = idDocumento;
     }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
 }

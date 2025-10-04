@@ -1,8 +1,6 @@
 package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
 
-
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Personas")
@@ -19,7 +17,10 @@ public class Persona {
     @Column(name = "apellido")
     private String apellido;
 
-    @ManyToOne
+    @Column(name = "horasSemanales")
+    private String horasSemanales;
+
+    @OneToOne
     @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario")
     private Usuario Usuario;
 
@@ -34,13 +35,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido){
+    public Persona(String nombre, String apellido, String horasSemanales){
         this.nombre = nombre;
         this.apellido = apellido;
+        this.horasSemanales = horasSemanales;
     }
 
     //GETTERS
-
     public long getIdPersona() {
         return idPersona;
     }
@@ -57,8 +58,15 @@ public class Persona {
         return Usuario;
     }
 
-    //SETTERS
+    public String getHorasSemanales() {
+        return horasSemanales;
+    }
 
+    public Grupo getGrupo() {
+        return Grupo;
+    }
+
+    //SETTERS
     public void setIdPersona(long idPersona) {
         this.idPersona = idPersona;
     }
@@ -71,9 +79,16 @@ public class Persona {
         this.apellido = apellido;
     }
 
-
     public void setUsuario(Usuario usuario) {
         Usuario = usuario;
+    }
+
+    public void setHorasSemanales(String horasSemanales) {
+        this.horasSemanales = horasSemanales;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        Grupo = grupo;
     }
 
 }
