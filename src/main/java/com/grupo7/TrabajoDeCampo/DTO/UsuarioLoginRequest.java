@@ -1,10 +1,10 @@
 package com.grupo7.TrabajoDeCampo.DTO;
 
-public class UserLoginRequest {
+public class UsuarioLoginRequest {
     private String email;
     private String password;
 
-    public UserLoginRequest() {}
+    public UsuarioLoginRequest() {}
 
     public String getEmail() {
         return email;

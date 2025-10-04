@@ -2,11 +2,12 @@ package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="users")
-public class User{
+@Table(name="Usuarios")
+public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idUsuario")
+    private Long idUsuario;
 
     @Column(nullable = false,unique = true)
     private String email;
@@ -14,28 +15,42 @@ public class User{
     @Column(nullable = false)
     private String password;
 
-    public User(){
+    @ManyToOne
+    @JoinColumn(name="idGrupo", referencedColumnName = "idGrupo")
+    private Grupo grupo;
+
+
+    //CONSTRUCTORES
+    public Usuario(){
     }
 
-    public User(String email,String password){
+    public Usuario(String email, String password){
         this.email = email;
         setPassword(password);
     }
+
+    //GETTERS
     public Long getId(){
-        return id;
+        return idUsuario;
     }
-    public void setId(Long id){
-        this.id = id;
-    }
+
     public String getEmail(){
         return email;
     }
-    public void setEmail(String email){
-        this.email = email;
-    }
+
     public String getPassword(){
         return password;
     }
+
+    //SETTERS
+    public void setId(Long id){
+        this.idUsuario = id;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

@@ -1,10 +1,10 @@
 package com.grupo7.TrabajoDeCampo.DTO;
 
-public class UserRegisterRequest {
+public class UsuarioRegisterRequest {
         private String email;
         private String password;
 
-        public UserRegisterRequest() {
+        public UsuarioRegisterRequest() {
         }
 
         public String getEmail() {
