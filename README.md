@@ -1,14 +1,34 @@
-
-
-Recontra Puto el que lee
-
-
 # Configuración del Proyecto
+
+## Tener instalado:
+- _PostgreSQL:_
+_Cuando se instala postgresql instalar pgAdmin4_
+```
+https://www.postgresql.org/
+```
+
+- _Postman_
+```
+https://www.postman.com/
+```
+- _(Recomendado) IntelliJ IDEA_
+```
+https://www.jetbrains.com/idea/
+```
+
+- _Maven_
+```
+https://www.youtube.com/watch?v=rl5-yyrmp-0 
+```
+- _Java_
 
 ## Java / JDK
 - **Versión:** 17.0.12 LTS  
 - **Fecha de lanzamiento:** 2024-07-16
-
+_Link de la version:_
+```
+https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe
+```
 ## Spring Boot
 - **Puerto de la aplicación:** [http://localhost:8081]
 
@@ -21,6 +41,14 @@ Recontra Puto el que lee
 
 - **Puerto de la aplicación:** [http://localhost:5432]
 
+## Instalacion de dependencias 
+_En el frontEnd ejecutar en la terminal:_
+### `npm install`
+
+_Solucion error react scripts is not recognized as an internal or external command_
+- Eliminar la linea `"react-scripts": "0.0.0"` en package.json 
+- Luego ejecutar `npm install react-scripts --save`
+- Finalmente verificar que aparezca `"react-scripts": "5.0.1"`
 
 ## Dependencias pom
 
