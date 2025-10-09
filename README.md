@@ -86,3 +86,25 @@ _Solucion error react scripts is not recognized as an internal or external comma
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+## Postman 
+_(Hay que tener la base de datos corriendo)_
+
+### Registrar Usuario 
+`POST` http://localhost:8081/auth/register
+
+- _En `Body` seleccionar raw y JSON_
+	_Ingresar en raw:_
+	{
+  		"email": "mail@gmail.com",
+  		"password": "contraseña"
+	}
+
+### Logear Usuario
+`POST` http://localhost:8081/auth/login
+
+- _En `Body` seleccionar raw y JSON_
+	_Ingresar en raw:_
+	{
+  		"email": "mail@gmail.com",
+  		"password": "contraseña"
+	}
