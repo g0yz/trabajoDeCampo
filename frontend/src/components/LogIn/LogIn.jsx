@@ -63,7 +63,7 @@ export default function LogIn({ setUsuario }) {
         </label>
 
         <div className='boton'>
-          <button type="submit" className='botonIniciarSesion'>Iniciar Sesion</button>
+          <button type="submit" className='botonIniciarSesion'>Iniciar Sesión</button>
         </div>
       </form>
 
