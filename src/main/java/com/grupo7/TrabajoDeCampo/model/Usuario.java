@@ -2,23 +2,18 @@ package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Usuarios")
+@Table(name="Usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idUsuario")
-    private Long idUsuario;
+    @Column(name = "oidUsuario")
+    private Long oidUsuario;
 
     @Column(nullable = false,unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
-
-    @ManyToOne
-    @JoinColumn(name="idGrupo", referencedColumnName = "idGrupo")
-    private Grupo grupo;
-
 
     //CONSTRUCTORES
     public Usuario(){
@@ -31,7 +26,7 @@ public class Usuario {
 
     //GETTERS
     public Long getId(){
-        return idUsuario;
+        return oidUsuario;
     }
 
     public String getEmail(){
@@ -44,7 +39,7 @@ public class Usuario {
 
     //SETTERS
     public void setId(Long id){
-        this.idUsuario = id;
+        this.oidUsuario = id;
     }
 
     public void setEmail(String email){

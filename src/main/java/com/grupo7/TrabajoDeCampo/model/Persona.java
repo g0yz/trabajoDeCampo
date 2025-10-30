@@ -2,14 +2,13 @@ package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Personas")
+@Table(name="Persona")
 public class Persona {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idPersona")
-    private long idPersona;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="oidPersona")
+    private Long idPersona;
 
     @Column(name = "nombre")
     private String nombre;
@@ -21,13 +20,14 @@ public class Persona {
     private String horasSemanales;
 
     @OneToOne
-    @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario")
+    @JoinColumn(name="oidUsuario",referencedColumnName = "oidUsuario",nullable = true)
     private Usuario Usuario;
 
-
     @ManyToOne
-    @JoinColumn(name = "grupo_id",referencedColumnName = "idGrupo")
+    @JoinColumn(name="oidGrupo", referencedColumnName = "oidGrupo", nullable = false)
     private Grupo Grupo;
+
+
 
 
     //CONSTRUCTORES
@@ -67,7 +67,7 @@ public class Persona {
     }
 
     //SETTERS
-    public void setIdPersona(long idPersona) {
+    public void setIdPersona(Long idPersona) {
         this.idPersona = idPersona;
     }
 

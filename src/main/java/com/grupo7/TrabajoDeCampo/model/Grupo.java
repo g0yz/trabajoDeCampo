@@ -1,16 +1,15 @@
 package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name="Grupos")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "Grupo")
 public class Grupo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idGrupo")
-    private Long idGrupo;
+    @Column(name="oidGrupo")
+    private Long oidGrupo;
 
     @Column(name = "nombreGrupo")
     private String nombreGrupo;
@@ -24,32 +23,27 @@ public class Grupo {
     @Column(name = "organigrama")
     private String organigrama;
 
-    @Column(name = "objetivoYDesarrollo")
-    private String objetivoYDesarrollo;
-
-    //verificar esto
-    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Documento> documentos = new ArrayList<>();
-
-    //verificar esto
-    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Equipo> equipos = new ArrayList<>();
+    @Column(name = "objetivoYDesarollo")
+    private String objetivoYDesarollo;
 
 
     //CONSTRUCTORES
-    public Grupo(){
+    public Grupo() {
     }
 
-    public Grupo(String nombreGrupo,String sigla, String email, String organigrama, String objetivoYDesarrollo ){
+    public Grupo(String nombreGrupo, String sigla, String email, String organigrama, String objetivoYDesarollo) {
         this.nombreGrupo = nombreGrupo;
         this.sigla = sigla;
         this.email = email;
         this.organigrama = organigrama;
-        this.objetivoYDesarrollo = objetivoYDesarrollo;
-
+        this.objetivoYDesarollo = objetivoYDesarollo;
     }
 
     //GETTERS
+    public long getOidGrupo() {
+        return oidGrupo;
+    }
+
     public String getNombreGrupo() {
         return nombreGrupo;
     }
@@ -66,30 +60,32 @@ public class Grupo {
         return organigrama;
     }
 
-    public String getObjetivoYDesarrollo() {
-        return objetivoYDesarrollo;
+    public String getObjetivoYDesarollo() {
+        return objetivoYDesarollo;
     }
 
     //SETTERS
-
-    public void setNombreGrupo(String nombreGrupo){
-        this.nombreGrupo= nombreGrupo;
+    public void setObjetivoYDesarollo(String objetivoYDesarollo) {
+        this.objetivoYDesarollo = objetivoYDesarollo;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setOrganigrama(String organigrama) {
+        this.organigrama = organigrama;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setOrganigrama(String organigrama){
-        this.organigrama = organigrama;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
-    public void setObjetivoYDesarrollo(String objetivoYDesarrollo){
-        this.objetivoYDesarrollo = objetivoYDesarrollo;
+    public void setNombreGrupo(String nombreGrupo) {
+        this.nombreGrupo = nombreGrupo;
     }
 
+    public void setOidGrupo(Long oidGrupo) {
+        this.oidGrupo = oidGrupo;
+    }
 }

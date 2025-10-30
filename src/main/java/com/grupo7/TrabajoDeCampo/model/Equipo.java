@@ -1,50 +1,51 @@
 package com.grupo7.TrabajoDeCampo.model;
+
 import jakarta.persistence.*;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "Equipos")
+@Table(name = "Equipo")
 public class Equipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEquipo")
-    private long idEquipo;
+    @Column(name="oidEquipo")
+    private Long oidEquipo;
 
     @Column(name = "denominacion")
     private String denominacion;
 
-    @Column(name= "fechaIncorporacion")
+    @Column(name = "fechaIncorporacion")
     private Timestamp fechaIncorporacion;
 
-    @Column(name = "montoInvertido")
+    @Column(name="montoInvertido")
     private Double montoInvertido;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    //verificar esto
     @ManyToOne
-    @JoinColumn(name = "idGrupo")
-    private Grupo grupo;
+    @JoinColumn(name="oidGrupo", referencedColumnName = "oidGrupo", nullable = false)
+    private Grupo Grupo;
 
 
+    //CONSTRUCTORES
     public Equipo() {
     }
 
-    public Equipo(String denominacion, Timestamp fechaIncorporacion, Double montoInvertido, String descripcion, Grupo grupo){
+    public Equipo(Long oidEquipo, String descripcion, String denominacion, Timestamp fechaIncorporacion, Double montoInvertido) {
+        this.oidEquipo = oidEquipo;
+        this.descripcion = descripcion;
         this.denominacion = denominacion;
         this.fechaIncorporacion = fechaIncorporacion;
         this.montoInvertido = montoInvertido;
-        this.descripcion = descripcion;
-        this.grupo = grupo;
     }
 
+
     //GETTERS
-    public long getIdEquipo() {
-        return idEquipo;
+    public Long getOidEquipo() {
+        return oidEquipo;
     }
 
     public String getDenominacion() {
@@ -64,12 +65,12 @@ public class Equipo {
     }
 
     public Grupo getGrupo() {
-        return grupo;
+        return Grupo;
     }
 
     //SETTERS
     public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
+        Grupo = grupo;
     }
 
     public void setDescripcion(String descripcion) {
@@ -88,7 +89,7 @@ public class Equipo {
         this.denominacion = denominacion;
     }
 
-    public void setIdEquipo(long idEquipo) {
-        this.idEquipo = idEquipo;
+    public void setOidEquipo(Long oidEquipo) {
+        this.oidEquipo = oidEquipo;
     }
 }

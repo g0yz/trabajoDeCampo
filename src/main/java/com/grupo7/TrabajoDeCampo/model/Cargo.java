@@ -1,41 +1,42 @@
 package com.grupo7.TrabajoDeCampo.model;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Cargos")
+@Table(name ="Cargo")
 public class Cargo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idCargo")
-    private long idCargo;
+    @Column (name = "oidCargo")
+    private Long oidCargo;
 
-    @Column(name = "descripcion")
+    @Column (name = "descripcion")
     private String descripcion;
 
 
-
-    //CONSTRUCTORES
-    public Cargo(){
+    public Cargo() {
     }
-    public Cargo(String descripcion) {
+
+    public Cargo(Long oidCargo, String descripcion) {
+        this.oidCargo = oidCargo;
         this.descripcion = descripcion;
     }
 
-    //GETTERS
-    public long getIdCargo() {
-        return idCargo;
+
+    public Long getOidCargo() {
+        return oidCargo;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-    //SETTERS
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setOidCargo(Long oidCargo) {
+        this.oidCargo = oidCargo;
     }
 
-    public void setIdCargo(long idCargo) {
-        this.idCargo = idCargo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }
