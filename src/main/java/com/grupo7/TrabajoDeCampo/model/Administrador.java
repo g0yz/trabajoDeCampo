@@ -17,4 +17,30 @@ public class Administrador {
     @JoinColumn(name = "oidPersona", referencedColumnName = "oidPersona")
     private Persona persona;
 
+
+    public Administrador() {
+    }
+
+    public Administrador(Long oidAdministrador, Persona persona) {
+        this.oidAdministrador = oidAdministrador;
+        this.persona = persona;
+    }
+
+    public Long getOidAdministrador() {
+        return oidAdministrador;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+
+    public void setOidAdministrador(Long oidAdministrador) {
+        this.oidAdministrador = oidAdministrador;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
 }
