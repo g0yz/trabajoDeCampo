@@ -1,14 +1,15 @@
 package com.grupo7.TrabajoDeCampo.model;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Documentos")
+@Table(name = "Documento")
 public class Documento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idDocumento")
-    private long idDocumento;
+    @Column(name="oidDocumento")
+    private Long oidDocumento;
 
     @Column(name = "titulo")
     private String titulo;
@@ -20,28 +21,26 @@ public class Documento {
     private String editorial;
 
     @Column(name = "anio")
-    private String anio;
+    private Integer anio;
 
-    //verificar esto
     @ManyToOne
-    @JoinColumn(name = "idGrupo")
-    private Grupo grupo;
-
+    @JoinColumn(name="oidGrupo", referencedColumnName = "oidGrupo", nullable = false)
+    private Grupo Grupo;
 
     //CONSTRUCTORES
     public Documento() {
     }
 
-    public Documento(String titulo, String autores, String editorial, String anio){
-        this.titulo = titulo;
+    public Documento(String autores, String editorial, Integer anio, String titulo) {
         this.autores = autores;
         this.editorial = editorial;
         this.anio = anio;
+        this.titulo = titulo;
     }
 
     //GETTERS
-    public long getIdDocumento() {
-        return idDocumento;
+    public long getOidDocumento() {
+        return oidDocumento;
     }
 
     public String getTitulo() {
@@ -56,12 +55,20 @@ public class Documento {
         return editorial;
     }
 
-    public String getAnio() {
+    public Integer getAnio() {
         return anio;
     }
 
+    public Grupo getGrupo() {
+        return Grupo;
+    }
+
     //SETTERS
-    public void setAnio(String anio) {
+    public void setGrupo(Grupo grupo) {
+        Grupo = grupo;
+    }
+
+    public void setAnio(Integer anio) {
         this.anio = anio;
     }
 
@@ -77,7 +84,10 @@ public class Documento {
         this.titulo = titulo;
     }
 
-    public void setIdDocumento(long idDocumento) {
-        this.idDocumento = idDocumento;
+    public void setOidDocumento(Long oidDocumento) {
+        this.oidDocumento = oidDocumento;
     }
+
+
+
 }

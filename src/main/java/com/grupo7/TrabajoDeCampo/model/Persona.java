@@ -1,17 +1,14 @@
 package com.grupo7.TrabajoDeCampo.model;
 import jakarta.persistence.*;
 
-
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Personas")
+@Table(name="Persona")
 public class Persona {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idPersona")
-    private long idPersona;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="oidPersona")
+    private Long idPersona;
 
     @Column(name = "nombre")
     private String nombre;
@@ -19,14 +16,18 @@ public class Persona {
     @Column(name = "apellido")
     private String apellido;
 
-    @ManyToOne
-    @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario")
+    @Column(name = "horasSemanales")
+    private String horasSemanales;
+
+    @OneToOne
+    @JoinColumn(name="oidUsuario",referencedColumnName = "oidUsuario",nullable = true)
     private Usuario Usuario;
 
-
     @ManyToOne
-    @JoinColumn(name = "grupo_id",referencedColumnName = "idGrupo")
+    @JoinColumn(name="oidGrupo", referencedColumnName = "oidGrupo", nullable = false)
     private Grupo Grupo;
+
+
 
 
     //CONSTRUCTORES
@@ -34,13 +35,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido){
+    public Persona(String nombre, String apellido, String horasSemanales){
         this.nombre = nombre;
         this.apellido = apellido;
+        this.horasSemanales = horasSemanales;
     }
 
     //GETTERS
-
     public long getIdPersona() {
         return idPersona;
     }
@@ -57,9 +58,16 @@ public class Persona {
         return Usuario;
     }
 
-    //SETTERS
+    public String getHorasSemanales() {
+        return horasSemanales;
+    }
 
-    public void setIdPersona(long idPersona) {
+    public Grupo getGrupo() {
+        return Grupo;
+    }
+
+    //SETTERS
+    public void setIdPersona(Long idPersona) {
         this.idPersona = idPersona;
     }
 
@@ -71,9 +79,16 @@ public class Persona {
         this.apellido = apellido;
     }
 
-
     public void setUsuario(Usuario usuario) {
         Usuario = usuario;
+    }
+
+    public void setHorasSemanales(String horasSemanales) {
+        this.horasSemanales = horasSemanales;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        Grupo = grupo;
     }
 
 }

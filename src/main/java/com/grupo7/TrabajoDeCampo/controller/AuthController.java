@@ -5,7 +5,7 @@ import com.grupo7.TrabajoDeCampo.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import com.grupo7.TrabajoDeCampo.repository.UserRepository;
+import com.grupo7.TrabajoDeCampo.repository.UsuarioRepository;
 
 import java.util.Optional;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class AuthController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -23,7 +23,7 @@ public class AuthController {
     // Registro de usuario
     @PostMapping("/register")
     public String register(@RequestBody UsuarioRegisterRequest request) {  //uso de UsuarioRegisterRequest
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        if (usuarioRepository.findByEmail(request.getEmail()).isPresent()) {
             return "El correo ya está registrado.";
         }
 
@@ -31,7 +31,7 @@ public class AuthController {
         usuario.setEmail(request.getEmail());
         usuario.setPassword(passwordEncoder.encode(request.getPassword())); // encripta la contraseña
 
-        userRepository.save(usuario);
+        usuarioRepository.save(usuario);
 
         return "Usuario registrado con éxito";
     }
@@ -39,7 +39,7 @@ public class AuthController {
     // Login de usuario
     @PostMapping("/login")
     public String login(@RequestBody UsuarioLoginRequest request) {  //Uso de UsuarioLoginRequest
-        Optional<Usuario> userOpt = userRepository.findByEmail(request.getEmail());
+        Optional<Usuario> userOpt = usuarioRepository.findByEmail(request.getEmail());
 
         if (userOpt.isEmpty()) {
             return "Usuario no encontrado.";
