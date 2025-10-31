@@ -42,5 +42,5 @@ public class Administrador {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
+
 }
