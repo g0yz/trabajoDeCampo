@@ -1,0 +1,47 @@
+package com.grupo7.TrabajoDeCampo.service;
+
+import com.grupo7.TrabajoDeCampo.model.Grupo;
+import com.grupo7.TrabajoDeCampo.repository.GrupoRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class GrupoService {
+
+    private final GrupoRepository grupoRepository;
+
+    public GrupoService(GrupoRepository grupoRepository) {
+        this.grupoRepository = grupoRepository;
+    }
+
+    public List<Grupo> listarGrupos() {
+        return grupoRepository.findAll();
+    }
+
+    public Optional<Grupo> obtenerGrupoPorId(Long id) {
+        return grupoRepository.findById(id);
+    }
+
+    public Grupo crearGrupo(Grupo grupo) {
+        return grupoRepository.save(grupo);
+    }
+
+    public Grupo actualizarGrupo(Long id, Grupo grupoActualizado) {
+        return grupoRepository.findById(id)
+                .map(grupo -> {
+                    grupo.setNombreGrupo(grupoActualizado.getNombreGrupo());
+                    grupo.setSigla(grupoActualizado.getSigla());
+                    grupo.setEmail(grupoActualizado.getEmail());
+                    grupo.setOrganigrama(grupoActualizado.getOrganigrama());
+                    grupo.setObjetivoYDesarollo(grupoActualizado.getObjetivoYDesarollo());
+                    return grupoRepository.save(grupo);
+                })
+                .orElseThrow(() -> new RuntimeException("Grupo no encontrado con id: " + id));
+    }
+
+    public void eliminarGrupo(Long id) {
+        grupoRepository.deleteById(id);
+    }
+}
