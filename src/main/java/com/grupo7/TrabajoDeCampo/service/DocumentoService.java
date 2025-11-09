@@ -23,7 +23,7 @@ public class DocumentoService {
         this.grupoRepository = grupoRepository;
     }
 
-    public List<Documento> listarDocumento(){
+    public List<Documento> listarDocumentos(){
         return documentoRepository.findAll();
     }
 

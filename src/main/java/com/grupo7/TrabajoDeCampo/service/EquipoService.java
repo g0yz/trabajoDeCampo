@@ -39,10 +39,23 @@ public class EquipoService {
     public Equipo actualizarEquipo(Long id, Equipo equipoActualizado){
         Equipo equipo = equipoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Equipo no encontrado con id: " + id));
-        equipo.setDenominacion(equipoActualizado.getDenominacion());
-        equipo.setFechaIncorporacion(equipoActualizado.getFechaIncorporacion());
-        equipo.setMontoInvertido(equipoActualizado.getMontoInvertido());
-        equipo.setDescripcion(equipoActualizado.getDescripcion());
+
+        if (equipoActualizado.getDenominacion() != null) {
+            equipo.setDenominacion(equipoActualizado.getDenominacion());
+        }
+
+        if (equipoActualizado.getFechaIncorporacion() != null) {
+            equipo.setFechaIncorporacion(equipoActualizado.getFechaIncorporacion());
+        }
+
+        if (equipoActualizado.getMontoInvertido() != null) {
+            equipo.setMontoInvertido(equipoActualizado.getMontoInvertido());
+        }
+
+        if (equipoActualizado.getDescripcion() != null) {
+            equipo.setDescripcion(equipoActualizado.getDescripcion());
+        }
+
         if (equipoActualizado.getGrupo() != null) {
             equipo.setGrupo(equipoActualizado.getGrupo());
         }
@@ -52,6 +65,5 @@ public class EquipoService {
     public void eliminarEquipo(Long id){
         equipoRepository.deleteById(id);
     }
-
 }
 

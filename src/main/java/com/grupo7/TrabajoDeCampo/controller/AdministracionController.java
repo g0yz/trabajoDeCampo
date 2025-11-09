@@ -1,5 +1,6 @@
 package com.grupo7.TrabajoDeCampo.controller;
 import com.grupo7.TrabajoDeCampo.service.DocumentoService;
+import com.grupo7.TrabajoDeCampo.service.EquipoService;
 import com.grupo7.TrabajoDeCampo.service.GrupoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,8 @@ public class AdministracionController {
     private GrupoService grupoService;
     @Autowired
     private DocumentoService documentoService;
+    @Autowired
+    private EquipoService equipoService;
 
     //crear nuevo grupo
     @PostMapping("/grupos/agregarGrupo")
@@ -40,24 +43,54 @@ public class AdministracionController {
     }
 
     //eliminar grupo
-    @DeleteMapping("/grupos/eliminarGrupo/{idGrupo}")
+    @DeleteMapping("/grupos/eliminarGrupo/{oidGrupo}")
     public void eliminarGrupo(@PathVariable Long id) {
         grupoService.eliminarGrupo(id);
     }
 
     //crear nuevo Documento
-    @PostMapping("/documentos/agregarDocumento/{idGrupo}")
-    public Documento crearDocumento(@RequestBody Documento documento, Long idGrupo){
-        return documentoService.crearDocumento(documento, idGrupo);
+    @PostMapping("/documentos/agregarDocumento/{oidGrupo}")
+    public Documento crearDocumento(@RequestBody Documento documento, @PathVariable("oidGrupo") Long oidGrupo){
+        return documentoService.crearDocumento(documento, oidGrupo);
     }
 
     //listar todos los documentos
+    @GetMapping ("/documentos/listarDocumentos")
+    public List<Documento> listarDocumentos(){ return documentoService.listarDocumentos();}
 
     //obtener un documento por ID
 
     //actualizar un Documento
 
     //eliminar un Documento
+
+
+    //crear nuevo equipo
+    @PostMapping("/equipos/agregarEquipo/{oidGrupo}")
+    public Equipo crearEquipo(@RequestBody Equipo equipo, @PathVariable("oidGrupo") Long oidGrupo){
+        return equipoService.crearEquipo(equipo, oidGrupo);
+    }
+
+    //listar todos los equipos
+    @GetMapping ("/equipos/listarEquipos")
+    public List<Equipo> listarEquipos(){ return equipoService.listarEquipos();}
+
+    //obtener un equipo por ID
+    @GetMapping("/equipos/obtenerEquipo/{oidEquipo}")
+    public Optional<Equipo> obtenerEquipoPorId(@PathVariable("idEquipo") Long idEquipo) {
+        return equipoService.obtenerEquipoPorId(idEquipo);
+    }
+
+    //actualizar un equipo
+    @PutMapping("/equipos/actualizarEquipo/{oidEquipo}")
+    public Equipo actualizarEquipo(@PathVariable("oidEquipo") Long oidEquipo, @RequestBody Equipo equipoActualizado) {
+        return equipoService.actualizarEquipo(oidEquipo, equipoActualizado);
+    }
+    //eliminar un equipo
+    @DeleteMapping("/equipos/eliminarEquipo/{oidEquipo}")
+    public void eliminarEquipo(@PathVariable Long oidEquipo) {
+        equipoService.eliminarEquipo(oidEquipo);
+    }
 
 
 
