@@ -59,16 +59,6 @@ public class AdministracionController {
 
     //eliminar un Documento
 
-    //crear nuevo equipo
-
-    //listar todos los equipos
-
-    //obtener un equipo por ID
-
-    //actualizar un equipo
-
-    //eliminar un equipo
-
 
 
 }
