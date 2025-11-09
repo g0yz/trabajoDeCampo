@@ -28,21 +28,21 @@ public class AdministracionController {
     public List<Grupo> listarGrupos(){ return grupoService.listarGrupos();}
 
     //obtener un grupo por ID
-    @GetMapping("/grupos/obtenerGrupo/{idGrupo}")
-    public Optional<Grupo> obtenerGrupoPorId(@PathVariable Long id) {
-        return grupoService.obtenerGrupoPorId(id);
+    @GetMapping("/grupos/obtenerGrupo/{oidGrupo}")
+    public Optional<Grupo> obtenerGrupoPorId(@PathVariable("oidGrupo") Long oidGrupo) {
+        return grupoService.obtenerGrupoPorId(oidGrupo);
     }
 
     //actualizar grupo
-    @PutMapping("/grupos/actualizarGrupo/{idGrupo}")
-    public Grupo actualizarGrupo(@PathVariable Long id, @RequestBody Grupo grupo) {
-        return grupoService.actualizarGrupo(id, grupo);
+    @PutMapping("/grupos/actualizarGrupo/{oidGrupo}")
+    public Grupo actualizarGrupo(@PathVariable("oidGrupo") Long oidGrupo, @RequestBody Grupo grupo) {
+        return grupoService.actualizarGrupo(oidGrupo, grupo);
     }
 
     //eliminar grupo
-    @DeleteMapping("/grupos/eliminarGrupo/{idGrupo}")
-    public void eliminarGrupo(@PathVariable Long id) {
-        grupoService.eliminarGrupo(id);
+    @DeleteMapping("/grupos/eliminarGrupo/{oidGrupo}")
+    public void eliminarGrupo(@PathVariable("oidGrupo") Long oidGrupo) {
+        grupoService.eliminarGrupo(oidGrupo);
     }
 
     //crear nuevo Documento

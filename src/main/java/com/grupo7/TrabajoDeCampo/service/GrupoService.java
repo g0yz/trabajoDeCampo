@@ -31,11 +31,16 @@ public class GrupoService {
     public Grupo actualizarGrupo(Long id, Grupo grupoActualizado) {
         return grupoRepository.findById(id)
                 .map(grupo -> {
-                    grupo.setNombreGrupo(grupoActualizado.getNombreGrupo());
-                    grupo.setSigla(grupoActualizado.getSigla());
-                    grupo.setEmail(grupoActualizado.getEmail());
-                    grupo.setOrganigrama(grupoActualizado.getOrganigrama());
-                    grupo.setObjetivoYDesarollo(grupoActualizado.getObjetivoYDesarollo());
+                    if (grupoActualizado.getNombreGrupo() != null)
+                        grupo.setNombreGrupo(grupoActualizado.getNombreGrupo());
+                    if (grupoActualizado.getSigla() != null)
+                        grupo.setSigla(grupoActualizado.getSigla());
+                    if (grupoActualizado.getEmail() != null)
+                        grupo.setEmail(grupoActualizado.getEmail());
+                    if (grupoActualizado.getOrganigrama() != null)
+                        grupo.setOrganigrama(grupoActualizado.getOrganigrama());
+                    if (grupoActualizado.getObjetivoYDesarollo() != null)
+                        grupo.setObjetivoYDesarollo(grupoActualizado.getObjetivoYDesarollo());
                     return grupoRepository.save(grupo);
                 })
                 .orElseThrow(() -> new RuntimeException("Grupo no encontrado con id: " + id));
