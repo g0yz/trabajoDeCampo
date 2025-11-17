@@ -22,6 +22,7 @@ public class AdministracionController {
     @Autowired
     private EquipoService equipoService;
 
+    //-----------------------------------GRUPOS-----------------------------------
     //crear nuevo grupo
     @PostMapping("/grupos/agregarGrupo")
     public Grupo crearGrupo(@RequestBody Grupo grupo) { return grupoService.crearGrupo(grupo); }
@@ -48,6 +49,9 @@ public class AdministracionController {
         grupoService.eliminarGrupo(oidGrupo);
     }
 
+
+    //-----------------------------------DOCUMENTOS-----------------------------------
+
     //crear nuevo Documento
     @PostMapping("/documentos/agregarDocumento/{oidGrupo}")
     public Documento crearDocumento(@RequestBody Documento documento, @PathVariable("oidGrupo") Long oidGrupo){
@@ -64,7 +68,7 @@ public class AdministracionController {
 
     //eliminar un Documento
 
-
+    //-----------------------------------EQUIPOS-----------------------------------
     //crear nuevo equipo
     @PostMapping("/equipos/agregarEquipo/{oidGrupo}")
     public Equipo crearEquipo(@RequestBody Equipo equipo, @PathVariable("oidGrupo") Long oidGrupo){
