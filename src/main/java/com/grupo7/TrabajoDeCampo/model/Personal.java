@@ -12,7 +12,7 @@ public class Personal {
 
 
     @Enumerated(EnumType.STRING)
-    @Column(name="objectType")
+    @Column(name="tipoPersonal")
     private TipoPersonal tipoPersonal;
 
     @ManyToOne

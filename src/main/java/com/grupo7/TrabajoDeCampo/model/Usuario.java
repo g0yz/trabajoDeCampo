@@ -1,4 +1,5 @@
 package com.grupo7.TrabajoDeCampo.model;
+import com.grupo7.TrabajoDeCampo.handler.Role;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,9 @@ public class Usuario {
 
     @Column(nullable = false,unique = true)
     private String email;
+
+   // @Column(nullable = false)
+    //private Role role;
 
     @Column(nullable = false)
     private String password;
@@ -25,7 +29,9 @@ public class Usuario {
     }
 
     //GETTERS
-    public Long getId(){
+
+
+    public Long getOidUsuario() {
         return oidUsuario;
     }
 
@@ -33,18 +39,26 @@ public class Usuario {
         return email;
     }
 
+   // public Role getRole() {
+     //   return role;
+    //}
+
     public String getPassword(){
         return password;
     }
 
     //SETTERS
-    public void setId(Long id){
-        this.oidUsuario = id;
+    public void setOidUsuario(Long oidUsuario) {
+        this.oidUsuario = oidUsuario;
     }
 
     public void setEmail(String email){
         this.email = email;
     }
+
+  //  public void setRole(Role role) {
+    //    this.role = role;
+    //}
 
     public void setPassword(String password) {
         this.password = password;
