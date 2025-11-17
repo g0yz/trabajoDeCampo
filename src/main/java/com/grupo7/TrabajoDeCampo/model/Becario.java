@@ -14,13 +14,9 @@ public class Becario {
     @Column(name = "fuenteFinanciamiento")
     private String fuenteFinanciamiento;
 
-    enum ObjectType{
-        Doctorado,MaestriaEspecializacion,BecarioGraduado,BecarioAlumno,Pasante,ProyectoFinalYTesinaDeGradoTrabajoFinalYTesisDePosgrado
-    }
-
-    @Column(name = "objectType")
+    @Column(name = "tipoBecario")
     @Enumerated(EnumType.STRING)
-    private ObjectType objectType;
+    private TipoBecario tipoBecario;
 
     @ManyToOne
     @JoinColumn(name = "oidPersona", referencedColumnName = "oidPersona", nullable = false)
@@ -30,10 +26,10 @@ public class Becario {
     public Becario() {
     }
 
-    public Becario(Long oidBecario, String fuenteFinanciamiento, ObjectType objectType, Persona persona) {
+    public Becario(Long oidBecario, String fuenteFinanciamiento, TipoBecario tipoBecario, Persona persona) {
         this.oidBecario = oidBecario;
         this.fuenteFinanciamiento = fuenteFinanciamiento;
-        this.objectType = objectType;
+        this.tipoBecario = tipoBecario;
         Persona = persona;
     }
 
@@ -45,14 +41,13 @@ public class Becario {
         return fuenteFinanciamiento;
     }
 
-    public ObjectType getObjectType() {
-        return objectType;
+    public TipoBecario getTipoBecario() {
+        return tipoBecario;
     }
 
     public Persona getPersona() {
         return Persona;
     }
-
 
     public void setOidBecario(Long oidBecario) {
         this.oidBecario = oidBecario;
@@ -62,8 +57,8 @@ public class Becario {
         this.fuenteFinanciamiento = fuenteFinanciamiento;
     }
 
-    public void setObjectType(ObjectType objectType) {
-        this.objectType = objectType;
+    public void setTipoBecario(TipoBecario tipoBecario) {
+        this.tipoBecario = tipoBecario;
     }
 
     public void setPersona(Persona persona) {

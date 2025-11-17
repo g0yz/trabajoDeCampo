@@ -10,13 +10,10 @@ public class Personal {
     @Column(name="oidPersonal")
     private Long oidPersonal;
 
-    enum ObjectType{
-        PersonalProfesional,PersonalTecnicoAdministrativoYDeApoyo
-    }
 
     @Enumerated(EnumType.STRING)
     @Column(name="objectType")
-    private ObjectType objectType;
+    private TipoPersonal tipoPersonal;
 
     @ManyToOne
     @JoinColumn(name = "oidPersona", referencedColumnName = "oidPersona", nullable = false)
@@ -26,9 +23,9 @@ public class Personal {
     public Personal() {
     }
 
-    public Personal(Long oidPersonal, ObjectType objectType, Persona persona) {
+    public Personal(Long oidPersonal, TipoPersonal tipoPersonal, Persona persona) {
         this.oidPersonal = oidPersonal;
-        this.objectType = objectType;
+        this.tipoPersonal = tipoPersonal;
         Persona = persona;
     }
 
@@ -37,8 +34,8 @@ public class Personal {
         return oidPersonal;
     }
 
-    public ObjectType getObjectType() {
-        return objectType;
+    public TipoPersonal getTipoPersonal() {
+        return tipoPersonal;
     }
 
     public Persona getPersona() {
@@ -50,8 +47,8 @@ public class Personal {
         this.oidPersonal = oidPersonal;
     }
 
-    public void setObjectType(ObjectType objectType) {
-        this.objectType = objectType;
+    public void setTipoPersonal(TipoPersonal tipoPersonal) {
+        this.tipoPersonal = tipoPersonal;
     }
 
     public void setPersona(Persona persona) {
